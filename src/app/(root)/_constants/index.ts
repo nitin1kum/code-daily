@@ -7,11 +7,17 @@ type LanguageConfig = Record<
     id: string;
     label: string;
     logoPath: string;
-    pistonRuntime: { language: string; version: string ,judgeId : number};
+    pistonRuntime: { language: string; version: string; judgeId: number };
     monacoLanguage: string;
     defaultCode: string;
   }
 >;
+
+type DevelopmentConfig = {
+  html: string;
+  css: string;
+  javascript: string;
+};
 
 export const LANGUAGE_CONFIG: LanguageConfig = {
   javascript: {
@@ -337,6 +343,23 @@ print("Sum of numbers:", sum)`,
   },
 };
 
+export const DEVELOPMENT_CONFIG: DevelopmentConfig = {
+  html: `
+      <div id="wrapper">
+    <p>Hello, World!</p>
+</div>  
+  `,
+  css: `#wrapper {
+    width: 100%;
+    height: 100%;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}`,
+  javascript: `const wrapper = document.getElementById("wrapper");
+    console.log("Script is working!");`,
+};
 
 export const THEMES: Theme[] = [
   { id: "vs-dark", label: "VS Dark", color: "#1e1e1e" },

@@ -14,6 +14,7 @@ import type {
   FunctionReference,
 } from "convex/server";
 import type * as codeExecution from "../codeExecution.js";
+import type * as codepens from "../codepens.js";
 import type * as http from "../http.js";
 import type * as snippet from "../snippet.js";
 import type * as users from "../users.js";
@@ -28,6 +29,7 @@ import type * as users from "../users.js";
  */
 declare const fullApi: ApiFromModules<{
   codeExecution: typeof codeExecution;
+  codepens: typeof codepens;
   http: typeof http;
   snippet: typeof snippet;
   users: typeof users;

@@ -8,8 +8,8 @@ export default defineSchema({
     name: v.string(),
     isPro: v.boolean(),
     proSince: v.optional(v.number()),
-    lemonSqueezyCustomerId: v.optional(v.string()),
-    lemonSqueezyOrderId: v.optional(v.string()),
+    razorPayOrderId: v.optional(v.string()),
+    paymentId: v.optional(v.string()),
   }).index("by_user_id", ["userId"]),
 
   codeExecution: defineTable({
@@ -24,6 +24,7 @@ export default defineSchema({
     userId: v.string(), //clerk ID
     title: v.string(),
     language: v.string(),
+    isPrivate : v.boolean(),
     code: v.string(),
     userName: v.string(), // store user's name for easy access
   }).index("by_user_id", ["userId"]),
@@ -42,4 +43,29 @@ export default defineSchema({
     .index("by_user_id", ["userId"])
     .index("by_snippet_id", ["snippetId"])
     .index("by_user_and_snippet_id", ["userId", "snippetId"]),
+
+  codepens: defineTable({
+    userId: v.string(),
+    html: v.string(),
+    css: v.string(),
+    script: v.string(),
+    isPrivate : v.boolean(),
+    title: v.string(),
+    userName : v.string(),
+  }).index("by_user_id", ["userId"]),
+
+  penStars: defineTable({
+    userId: v.string(),
+    penId: v.id("codepens"),
+  })
+    .index("by_user_id", ["userId"])
+    .index("by_pen_id", ["penId"])
+    .index("by_user_and_pen_id", ["userId", "penId"]),
+
+    penComments : defineTable({
+      penId: v.id("codepens"),
+      userId: v.string(),
+      userName: v.string(),
+      content: v.string(),
+    }).index("by_pen_id", ["penId"]),
 });

@@ -4,12 +4,18 @@ import React, { useState } from "react";
 import { api } from "../../../../convex/_generated/api";
 import { BiX } from "react-icons/bi";
 import toast from "react-hot-toast";
+import { useModeSlector } from "@/store/ModeSelector";
+import { useDevelopmentState } from "@/store/DevelopmentState";
 
 const ShareSnipperDialog = ({ onClose }: { onClose: () => void }) => {
   const [title, setTitle] = useState("");
   const [isSharing, setIsSharing] = useState(false);
+  const {mode} = useModeSlector();
+  const {html,css,script} = useDevelopmentState();
+  const [isPrivate,setIsPrivate] = useState<boolean>(false);
   const { language, getCode } = useCodeEditorState();
   const createSnippet = useMutation(api.snippet.createSnippet);
+  const createPen = useMutation(api.codepens.createPen);
 
   const handleShare = async (e:React.FormEvent) => {
     e.preventDefault();
@@ -17,7 +23,12 @@ const ShareSnipperDialog = ({ onClose }: { onClose: () => void }) => {
 
     try {
       const code = getCode();
-      await createSnippet({title,language,code});
+      if(mode === "Code"){
+        await createSnippet({title,language,code,isPrivate})
+      }
+      else{
+        await createPen({title,html,css,script,isPrivate})
+      }
       onClose();
       setTitle("");
       toast.success("Snippet shared successfully");
@@ -59,6 +70,15 @@ const ShareSnipperDialog = ({ onClose }: { onClose: () => void }) => {
               placeholder="Enter snippet title"
               required
             />
+          </div>
+          <div className="mb-4 flex gap-2 items-center">
+            <input type="checkbox" id="private" name="private" onChange={e => setIsPrivate(!isPrivate)} checked={isPrivate}/>
+            <label
+              htmlFor="private"
+              className="block font-medium text-gray-400"
+            >
+              Private
+            </label>
           </div>
           <div className="flex w-full justify-between">
             <button

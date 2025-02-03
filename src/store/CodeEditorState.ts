@@ -2,6 +2,8 @@ import { LANGUAGE_CONFIG } from "@/app/(root)/_constants";
 import { Editor, Monaco } from "@monaco-editor/react";
 import { CodeEditorState } from "@/types";
 import { create } from "zustand";
+import toast from "react-hot-toast";
+import { input } from "framer-motion/client";
 
 const getInitialState = () => {
   if (typeof window === "undefined") {
@@ -36,6 +38,7 @@ export const useCodeEditorState = create<CodeEditorState>((set, get) => {
     error: null,
     error_name : null,
     editor: null,
+    input : "",
     executionResult: null,
 
     getCode: (): string => get().editor?.getValue() || "",
@@ -46,6 +49,10 @@ export const useCodeEditorState = create<CodeEditorState>((set, get) => {
         editor.setValue(savedCode); // Set the saved code in the editor
       }
       set({ editor });
+    },
+
+    setInput : (input : string) => {
+      set({input : input})
     },
 
     setLanguage: (language: string) => {
@@ -79,6 +86,7 @@ export const useCodeEditorState = create<CodeEditorState>((set, get) => {
       set({ isRunning: true });
 
       try {
+        console.log(input)
         const runtime = LANGUAGE_CONFIG[language].pistonRuntime;
         const response = await fetch("https://emkc.org/api/v2/piston/execute", {
           method: "POST",
@@ -88,11 +96,26 @@ export const useCodeEditorState = create<CodeEditorState>((set, get) => {
           body: JSON.stringify({
             language: runtime.language,
             version: runtime.version,
-            stdin: "",
+            stdin: get().input,
             args: ["--timeout=40"],
             files: [{ content: code }],
           }),
         });
+
+        if(!response.ok){
+          console.log("Error while compiling code - ",response);
+          toast.error("Some error occurred");
+          set({
+            error : "Some Unknown Error Occurred. Please try again later.",
+            error_name : "Network Error",
+            executionResult: {
+              code,
+              output: "",
+              error : "Some Unknown Error Occurred. Please try again later.",
+            },
+          });
+          return;
+        }
 
         const data = await response.json();
 

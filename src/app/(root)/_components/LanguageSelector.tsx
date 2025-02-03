@@ -31,6 +31,12 @@ function LanguageSelector({ hasAccess }: { hasAccess: boolean }) {
   }, []);
 
   useEffect(()=>{
+    if(!hasAccess){
+      setLanguage("javascript");
+    }
+  },[hasAccess])
+
+  useEffect(()=>{
     setIsMounted(true);
     return ()=> {setIsMounted(false)}
   })
@@ -41,7 +47,7 @@ function LanguageSelector({ hasAccess }: { hasAccess: boolean }) {
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.97 }}
         onClick={(e) => setIsOpen(!isOpen)}
-        className="px-3 group py-2 flex gap-2 items-center w-48 bg-[#1e1e2e]/80 rounded-md hover:bg-[#262636] transition-all duration-200 border-gray-800/50 border-2 hover:border-gray-700"
+        className="px-3 group py-1 md:py-2 flex gap-2 items-center  md:w-40 lg:w-48 bg-[#1e1e2e]/80 rounded-full md:rounded-md hover:bg-[#262636] transition-all duration-200 border-gray-800/50 border-2 hover:border-gray-700"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
 
@@ -54,7 +60,7 @@ function LanguageSelector({ hasAccess }: { hasAccess: boolean }) {
             className="size-6 w-full h-full object-cover relative z-10"
           />}
         </div>
-        <span className="text-sm min-w-[80px] flex-1 text-gray-300 text-left group-hover:text-white transition-colors">
+        <span className="hidden md:block text-sm w-20 lg:min-w-[80px] flex-1 text-gray-300 text-left group-hover:text-white transition-colors">
           {isMounted ? currentLangObj?.label : "Language"}
         </span>
 
@@ -69,16 +75,16 @@ function LanguageSelector({ hasAccess }: { hasAccess: boolean }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.96 }}
             transition={{ duration: 0.2 }}
-            className={`absolute top-full left-0 mt-2 h-[300px] overflow-y-scroll w-full min-w-[240px] bg-[#1e1e2e]/95 backdrop-blur-xl rounded-xl border border-[#313244] sbadow-2xl py-2 z-50`}
+            className={`absolute top-full -left-[100px] md:left-0 mt-2 h-[300px] overflow-y-scroll w-full min-w-[200px] md:min-w-[240px] bg-[#1e1e2e]/95 backdrop-blur-xl rounded-xl border border-[#313244] sbadow-2xl py-2 z-50`}
           >
             <div className="px-2 pb-2 mb-2 border-b border-gray-800/50">
               <p className="text-xs font-medium text-gray-400 px-2">
-                Select Theme
+                Select Language
               </p>
             </div>
 
             {Object.values(LANGUAGE_CONFIG).map((lang, index) => {
-              const allow = true || lang.id == "javascript";
+              const allow = hasAccess || lang.id == "javascript";
 
               return (
                 <motion.button
@@ -86,7 +92,7 @@ function LanguageSelector({ hasAccess }: { hasAccess: boolean }) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: index * 0.1 }}
-                  className={`relative group w-full flex items-center gap-3 px-3 py-2  rounded-xl duration-200 ${lang.id === language ? "bg-blue-500/10 text-blue-400 border border-blue-400" : "text-gray-300"} ${allow ? "hover:bg-[#262636]" : "cursor-not-allowed"}`}
+                  className={`relative group w-full flex items-center gap-3 px-3 py-2 hover:bg-[#262636]  rounded-xl duration-200 ${lang.id === language && "bg-blue-500/10 text-blue-400 border border-blue-400"} ${allow ? "text-gray-400" : "cursor-not-allowed text-gray-200"}`}
                   onClick={() => (allow && setLanguage(lang.id))}
                 >
                   <div

@@ -1,18 +1,13 @@
-import { clerkClient, currentUser } from "@clerk/nextjs/server";
+import { currentUser } from "@clerk/nextjs/server";
 import { ConvexHttpClient } from "convex/browser";
 import React from "react";
 import { api } from "../../../../convex/_generated/api";
-import {
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  UserButton,
-} from "@clerk/nextjs";
 import ThemeSelector from "./ThemeSelector";
 import LanguageSelector from "./LanguageSelector";
 import Link from "next/link";
 import Image from "next/image";
 import RunButton from "./RunButton";
+import HeaderProfileButton from "./HeaderProfileButton";
 
 async function Header() {
   const user = await currentUser();
@@ -24,7 +19,7 @@ async function Header() {
 
   return (
     <header className="flex justify-between items-center rounded-lg bg-gray-950 px-8 py-4">
-      <div className="flex gap-[3rem] justify-center items-center">
+      <div className="flex gap-4 lg:gap-[3rem] justify-center items-center">
         {/* Logo */}
 
         <div className="group flex justify-center items-center">
@@ -47,7 +42,7 @@ async function Header() {
                 />
               </svg>
             </i>
-            <div>
+            <div className="hidden lg:block">
               <span className="bg-gradient-to-tr from-blue-400 to-purple-400 via-blue-300 bg-clip-text font-semibold text-xl text-transparent">
                 Code Daily
               </span>
@@ -61,7 +56,7 @@ async function Header() {
         {/* Snippet */}
 
         <Link href="/snippets" className="group">
-          <div className="flex pr-3 pl-2 justify-center items-center bg-[#1a1a2e] hover:scale-105 transition-all duration-150 ring-1 rounded-md ring-gray-600/50 p-1">
+          <div className="flex pr-3 pl-2 py-1 rounded-full justify-center items-center bg-[#1a1a2e] hover:scale-105 transition-all duration-150 ring-1 md:rounded-md ring-gray-600/50">
             <i>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +75,7 @@ async function Header() {
                 />
               </svg>
             </i>
-            <span className="text-gray-400 text-sm group-hover:text-gray-200 transition-colors">
+            <span className="hidden md:block text-gray-400 text-sm group-hover:text-gray-200 transition-colors">
               Snippet
             </span>
           </div>
@@ -88,41 +83,33 @@ async function Header() {
       </div>
       <div className="flex gap-3 items-center">
         <ThemeSelector />
-        <LanguageSelector hasAccess={false} />
+        <LanguageSelector hasAccess={convexUser?.isPro || false} />
 
         {/* Pro button */}
-        <Link href={"/pro"}>
-          <div className="flex gap-1.5 justify-center items-center px-3 py-1 bg-amber-400 rounded-md ring-[1px] ring-amber-300/50 bg-opacity-25">
-            <i>
-              <Image
-                src={"/sparkel.svg"}
-                alt="sparkle image"
-                width={14}
-                height={15}
-              />
-            </i>
-            <span className="text-[13px] text-amber-400 tracking-wide ">
-              Pro
-            </span>
-          </div>
-        </Link>
+        {!convexUser?.isPro && (
+          <Link href={"/pricing"}>
+            <div className="flex gap-1.5 justify-center rounded-full min-w-[40px] items-center px-3 py-1 bg-amber-400 md:rounded-md ring-[1px] ring-amber-300/50 bg-opacity-25">
+              <i>
+                <Image
+                  src={"/sparkel.svg"}
+                  alt="sparkle image"
+                  width={14}
+                  height={15}
+                />
+              </i>
+              <span className="hidden md:block text-[13px] text-amber-400 tracking-wide ">
+                Pro
+              </span>
+            </div>
+          </Link>
+        )}
 
         {/* Run  Button */}
 
-        <RunButton/>
+        <RunButton />
 
-        {/* Sign in */}
-        <SignedOut>
-          <SignInButton>
-            <div className="bg-blue-500 group rounded-md py-2.5 px-3 hover:scale-105 transition- duration-150 cursor-pointer ease-in-out hover:bg-blue-600">
-              <span className="text-sm font-medium font-white/80 group-hover:text-white transition-colors">Sign In / Sign Up</span>
-            </div>
-          </SignInButton>
-        </SignedOut>
-        <SignedIn>
-          <div className="bg-gray-800 w-[1px] h-7 mx-1" />
-          <UserButton />
-        </SignedIn>
+        {/* User Profile */}
+        <HeaderProfileButton />
       </div>
     </header>
   );

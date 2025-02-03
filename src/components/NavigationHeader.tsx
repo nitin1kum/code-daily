@@ -1,13 +1,24 @@
-import React from "react";
+"use client"
+import React, { useEffect, useState } from "react";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
+import { TbUserBitcoin } from "react-icons/tb";
+import { BiLogIn } from "react-icons/bi";
 
 export function NavigationHeader() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Prevent rendering on the server
+  if (!isClient) return null;
   return (
-    <header className="sticky inset-0 z-50 w-full py-1.5 bg-gray-900 border border-gray-800/50 backdrop-blur-xl backdrop-saturate-150">
+    <header className="sticky inset-0 px-4 z-50 w-full py-1.5 bg-gray-900 border border-gray-800/50 backdrop-blur-xl backdrop-saturate-150">
       <div className="flex justify-between items-center w-full max-w-7xl mx-auto">
-        <div className="flex gap-[3rem] justify-center items-center">
+        <div className="flex gap-3 md:gap-[3rem] justify-center items-center">
           {/* Logo */}
 
           <div className="group flex justify-center items-center">
@@ -30,7 +41,7 @@ export function NavigationHeader() {
                   />
                 </svg>
               </i>
-              <div>
+              <div className="hidden md:block">
                 <span className="bg-gradient-to-tr from-blue-400 to-purple-400 via-blue-300 bg-clip-text font-semibold text-xl text-transparent">
                   Code Daily
                 </span>
@@ -90,14 +101,25 @@ export function NavigationHeader() {
             </Link>
           </SignedOut>
           <SignedOut>
-            <SignInButton>
-            <div className="bg-blue-600 group rounded-md py-2.5 px-3 hover:scale-105 transition- duration-150 cursor-pointer hover:bg-blue-700">
-              <span className="text-sm font-white/80 group-hover:text-white transition-colors">Sign In / Sign Up</span>
-            </div>
+            <SignInButton mode="modal">
+              <div className="bg-blue-600 flex gap-2 items-center group rounded-full md:rounded-md py-2 px-3 hover:scale-105 transition- duration-150 cursor-pointer hover:bg-blue-700">
+                <BiLogIn className="size-4"/>
+                <span className="hidden md:block text-sm font-white/80 group-hover:text-white transition-colors">
+                  Sign In
+                </span>
+              </div>
             </SignInButton>
           </SignedOut>
           <SignedIn>
-            <UserButton />
+            <UserButton>
+              <UserButton.MenuItems>
+                <UserButton.Link
+                  label="Profile"
+                  labelIcon={<TbUserBitcoin className="size-4" />} // Ensure proper prop usage for the icon
+                  href="/profile"
+                />
+              </UserButton.MenuItems>
+            </UserButton>
           </SignedIn>
         </div>
       </div>

@@ -47,14 +47,44 @@ export interface CodeEditorState {
   theme: string;
   fontSize: number;
   editor: Monaco | null;
+  input : string,
   executionResult: ExecutionResult | null;
 
   setEditor: (editor: Monaco) => void;
   getCode: () => string;
+  setInput : (input : string) => void;
   setLanguage: (language: string) => void;
   setTheme: (theme: string) => void;
   setFontSize: (fontSize: number) => void;
   runCode: () => Promise<void>;
+}
+
+export interface DevelopmentState {
+  html : string,
+  css : string,
+  script : string
+  editor: Monaco | null;
+  language : string,
+  logs: Array<logs>,
+
+  updateHTML : (html : string) => void,
+  getCode: () => string;
+  setLogs : (logs : Array<logs>) => void,
+  setLanguage: (language: string) => void;
+  setEditor: (editor: Monaco) => void;
+  updateCSS : (css : string) => void,
+  updateJS : (js : string) => void,
+}
+
+export interface logs {
+  error : string,
+  message : string,
+  warning : string
+}
+
+export interface ModeSelector{
+  mode : string,
+  changeMode : (mode : string) => void
 }
 
 export interface Snippet {
@@ -63,6 +93,17 @@ export interface Snippet {
   userId: string;
   language: string;
   code: string;
+  title: string;
+  userName: string;
+}
+
+export interface Pen {
+  _id: Id<"codepens">;
+  _creationTime: number;
+  userId: string;
+  html: string;
+  css: string;
+  script: string;
   title: string;
   userName: string;
 }

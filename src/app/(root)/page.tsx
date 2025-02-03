@@ -1,23 +1,14 @@
-import {
-  SignInButton,
-  SignOutButton,
-  SignUpButton,
-  UserButton,
-} from "@clerk/nextjs";
 import Header from "./_components/Header";
-import EditorPanel from "./_components/EditorPanel";
-import OutputPanel from "./_components/OutputPanel";
+import MainBody from "./_components/MainBody";
 
 function Home() {
+
   return (
     <div className="min-h-screen">
-      <div className="max-w-[1800px] mx-auto p-4">
+      <div className="max-w-[1800px] mx-auto p-4 w-full">
         <Header />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mt-2">
-          <EditorPanel />
-          <OutputPanel />
-        </div>
+        <MainBody/>
       </div>
     </div>
   );
