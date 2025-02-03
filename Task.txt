@@ -1,8 +1,0 @@
-1. Public and Private Snippets
-2. Input section
-3. Tabs for showing snippet and pen created by user
-
-
-Data
-
-Card number - 5267 3181 8797 5449
