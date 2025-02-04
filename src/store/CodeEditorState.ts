@@ -1,5 +1,5 @@
 import { LANGUAGE_CONFIG } from "@/app/(root)/_constants";
-import { Editor, Monaco } from "@monaco-editor/react";
+import {  Monaco } from "@monaco-editor/react";
 import { CodeEditorState } from "@/types";
 import { create } from "zustand";
 import toast from "react-hot-toast";
