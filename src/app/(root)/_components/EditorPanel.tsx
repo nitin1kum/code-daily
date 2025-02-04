@@ -2,7 +2,7 @@
 
 import { useCodeEditorState } from "@/store/CodeEditorState";
 import React, { useEffect, useRef, useState } from "react";
-import {  DEVELOPMENT_CONFIG, LANGUAGE_CONFIG } from "../_constants";
+import { LANGUAGE_CONFIG } from "../_constants";
 import Image from "next/image";
 import { BsThreeDots, BsType } from "react-icons/bs";
 import { AnimatePresence, motion } from "framer-motion";
@@ -147,7 +147,7 @@ function EditorPanel({width} : {width : number}) {
                       <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
-                        onClick={(e) => setIsShareDialogOpen(true)}
+                        onClick={() => setIsShareDialogOpen(true)}
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-lg overflow-hidden bg-gradient-to-r from-blue-500 to-blue-600 opacity-90 hover:opacit-100 transition-opacity"
                       >
                         <BiShare className="size-4 text-gray-400" />

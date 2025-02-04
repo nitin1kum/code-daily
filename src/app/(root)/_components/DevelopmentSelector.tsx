@@ -38,7 +38,7 @@ function DevelopmentSelector() {
       <motion.button
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.97 }}
-        onClick={(e) => setIsOpen(!isOpen)}
+        onClick={() => setIsOpen(!isOpen)}
         className="px-3 group py-1 flex gap-2 items-center w-40 bg-[#1e1e2e]/80 rounded-md hover:bg-[#262636] transition-all duration-200 border-gray-800/50 border-2 hover:border-gray-700"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />

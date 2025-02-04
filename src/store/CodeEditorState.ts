@@ -1,5 +1,5 @@
 import { LANGUAGE_CONFIG } from "@/app/(root)/_constants";
-import {  Monaco } from "@monaco-editor/react";
+import { Monaco } from "@monaco-editor/react";
 import { CodeEditorState } from "@/types";
 import { create } from "zustand";
 import toast from "react-hot-toast";
@@ -175,7 +175,7 @@ export const useCodeEditorState = create<CodeEditorState>((set, get) => {
             output: output.trim(),
           },
         });
-      } catch (error: any) {
+      } catch (error : any) {
         console.log("Error while running code: ", error);
         set({
           error: error,

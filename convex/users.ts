@@ -13,7 +13,7 @@ export const syncUser = mutation({
         .first();
 
         if(!existingUser){
-            const user = await ctx.db.insert("users",{
+            await ctx.db.insert("users",{
                 userId : arg.userId,
                 name : arg.name,
                 email : arg.email,

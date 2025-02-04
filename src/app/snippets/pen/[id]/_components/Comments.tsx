@@ -27,7 +27,7 @@ function Comments({penId} : {penId : Id<"codepens">}) {
         try {
             await addComment({penId,content});
             toast.success("Comment added successfully");
-        } catch (error:any) {
+        } catch (error:unknown) {
             console.log("Error while adding comment",error);
             toast.error("Something went wrong.")
         }finally{
@@ -41,7 +41,7 @@ function Comments({penId} : {penId : Id<"codepens">}) {
         try {
             await deleteComment({commentId});
             toast.success("Comment deleted successfully");
-        } catch (error:any) {
+        } catch (error:unknown) {
             console.log("Error while deleting comment-",error);
             toast.error("Something went wrong");
         }finally{

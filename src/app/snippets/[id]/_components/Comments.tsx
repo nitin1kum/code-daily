@@ -27,7 +27,7 @@ function Comments({snippetId} : {snippetId : Id<"snippets">}) {
         try {
             await addComment({snippetId,content});
             toast.success("Comment added successfully");
-        } catch (error:any) {
+        } catch (error:unknown) {
             console.log("Error while adding comment",error);
             toast.error("Something went wrong.")
         }finally{
@@ -41,7 +41,7 @@ function Comments({snippetId} : {snippetId : Id<"snippets">}) {
         try {
             await deleteComment({commentId});
             toast.success("Comment deleted successfully");
-        } catch (error:any) {
+        } catch (error:unknown) {
             console.log("Error while deleting comment-",error);
             toast.error("Something went wrong");
         }finally{

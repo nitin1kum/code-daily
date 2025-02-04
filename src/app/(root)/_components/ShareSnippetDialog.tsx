@@ -72,7 +72,7 @@ const ShareSnipperDialog = ({ onClose }: { onClose: () => void }) => {
             />
           </div>
           <div className="mb-4 flex gap-2 items-center">
-            <input type="checkbox" id="private" name="private" onChange={e => setIsPrivate(!isPrivate)} checked={isPrivate}/>
+            <input type="checkbox" id="private" name="private" onChange={() => setIsPrivate(!isPrivate)} checked={isPrivate}/>
             <label
               htmlFor="private"
               className="block font-medium text-gray-400"

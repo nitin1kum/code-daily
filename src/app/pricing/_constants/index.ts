@@ -57,7 +57,7 @@ export type RazorpayResponse = {
 export type RazorpayExternalOption = {
 
   wallets: Array<string>;
-  handler: (response: any) => void;
+  handler: (response: unknown) => void;
 }
 
 export type RazorpayPrefill = {

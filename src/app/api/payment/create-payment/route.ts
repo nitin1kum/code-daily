@@ -24,7 +24,7 @@ export async function POST(req : Request){
 
         const order = await razorpay.orders.create(options);
         return NextResponse.json(order,{status : 200});
-    } catch (err : any) {
+    } catch (err : unknown) {
         console.log("error while making payment",err);
         return NextResponse.json("Internal Network error occurred.",{status : 500});
     }

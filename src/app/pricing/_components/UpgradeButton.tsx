@@ -60,7 +60,7 @@ export default function UpgradeButton() {
 
       const rzpay = new Razorpay(options);
       rzpay.open();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.log("Error while creating payment - ", error);
       toast.error("Unknown Error Occurred.");
     } finally {
@@ -97,7 +97,7 @@ export default function UpgradeButton() {
       toast.success("Subscription purchased successfully");
       setValue("Redirecting");
       router.push("/");
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.log("Error while verifying payment - ", err);
       toast.error("Payment verification failed. Please contact support.");
       setValue("Upgrade to Pro");

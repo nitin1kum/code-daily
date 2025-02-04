@@ -6,7 +6,7 @@ import { useMutation } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { useState } from "react";
 import Image from "next/image";
-import { BiStar, BiTrash, BiUser } from "react-icons/bi";
+import { BiTrash, BiUser } from "react-icons/bi";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { LuClock } from "react-icons/lu";
@@ -27,7 +27,7 @@ function PenCard({ pen }: { pen: Pen }) {
     try {
         await deletePen({penId : pen._id});
         toast.success("Snippet deleted successfully");
-    } catch (error:any) {
+    } catch (error:unknown) {
         console.log("Error deleting snipppet: ",error);
         toast.error("Error deleting snippet");
     }finally{
