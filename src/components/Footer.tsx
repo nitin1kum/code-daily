@@ -1,7 +1,9 @@
+"use client"
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const Footer = () => {
+  
   return (
     <footer className=''>
       <div className='-top-px h-px bg-gradient-to-r from-transparent via-gray-900 to-transparent'/>

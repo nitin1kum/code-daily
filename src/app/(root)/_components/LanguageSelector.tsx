@@ -60,7 +60,7 @@ function LanguageSelector({ hasAccess }: { hasAccess: boolean }) {
             className="size-6 w-full h-full object-cover relative z-10"
           />}
         </div>
-        <span className="hidden md:block text-sm w-20 lg:min-w-[80px] flex-1 text-gray-300 text-left group-hover:text-white transition-colors">
+        <span className="block sm:hidden md:block text-sm w-20 lg:min-w-[80px] flex-1 text-gray-300 text-left group-hover:text-white transition-colors">
           {isMounted ? currentLangObj?.label : "Language"}
         </span>
 
@@ -75,7 +75,7 @@ function LanguageSelector({ hasAccess }: { hasAccess: boolean }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.96 }}
             transition={{ duration: 0.2 }}
-            className={`absolute top-full -left-[100px] md:left-0 mt-2 h-[300px] overflow-y-scroll w-full min-w-[200px] md:min-w-[240px] bg-[#1e1e2e]/95 backdrop-blur-xl rounded-xl border border-[#313244] sbadow-2xl py-2 z-50`}
+            className={`absolute top-full right-0 sm:-left-[100px] md:left-0 mt-2 h-[300px] overflow-y-scroll w-full min-w-[200px] md:min-w-[240px] bg-[#1e1e2e]/95 backdrop-blur-xl rounded-xl border border-[#313244] sbadow-2xl py-2 z-50`}
           >
             <div className="px-2 pb-2 mb-2 border-b border-gray-800/50">
               <p className="text-xs font-medium text-gray-400 px-2">

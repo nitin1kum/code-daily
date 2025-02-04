@@ -5,7 +5,7 @@ export function CodePanelSkelton() {
     20, 40, 60, 50, 20, 30, 45, 55, 68, 95, 12, 78, 56, 89, 25, 35, 14,
   ];
   return (
-    <div className="relative w-1/2">
+    <div className="relative w-full lg:w-1/2">
       <div className="relative bg-[#12121a]/90 backdrop-blur rounded-xl border border-white/[0.05] p-6">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">

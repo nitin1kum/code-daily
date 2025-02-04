@@ -65,7 +65,7 @@ function EditorPanel({width} : {width : number}) {
   if (!loaded || !isMounted) return <CodePanelSkelton />;
 
   return (
-    <div style={{width : width + "%"}} className={`relative flex-grow`}>
+    <div style={{width : width + "%"}} className={`relative flex-grow w-full`}>
       <div className="relative bg-[#12121a]/90 backdrop-blur rounded-xl border border-white/[0.05] p-6">
         {/* Header */}
 
@@ -79,7 +79,7 @@ function EditorPanel({width} : {width : number}) {
                 height={32}
               />
             </div>
-            <div className={`${width > 35 ? "block" : "hidden"}`}>
+            <div className={`${width > 35 ? "sm:block hidden" : "hidden"}`}>
               <h2 className="text-sm font-medium text-white">Code Editor</h2>
               <p className="text-xs text-gray-500 ">
                 Write and Execute your code

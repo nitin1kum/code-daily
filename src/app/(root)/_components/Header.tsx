@@ -8,6 +8,7 @@ import Link from "next/link";
 import Image from "next/image";
 import RunButton from "./RunButton";
 import HeaderProfileButton from "./HeaderProfileButton";
+import SideBar from "./SideBar";
 
 async function Header() {
   const user = await currentUser();
@@ -18,7 +19,7 @@ async function Header() {
   });
 
   return (
-    <header className="flex justify-between items-center rounded-lg bg-gray-950 px-8 py-4">
+    <header className="flex relative z-10 justify-between items-center rounded-lg bg-gray-950 px-6 md:px-8 py-4">
       <div className="flex gap-4 lg:gap-[3rem] justify-center items-center">
         {/* Logo */}
 
@@ -55,7 +56,7 @@ async function Header() {
 
         {/* Snippet */}
 
-        <Link href="/snippets" className="group">
+        <Link href="/snippets" className="group hidden sm:block">
           <div className="flex pr-3 pl-2 py-1 rounded-full justify-center items-center bg-[#1a1a2e] hover:scale-105 transition-all duration-150 ring-1 md:rounded-md ring-gray-600/50">
             <i>
               <svg
@@ -81,13 +82,18 @@ async function Header() {
           </div>
         </Link>
       </div>
+
       <div className="flex gap-3 items-center">
-        <ThemeSelector />
-        <LanguageSelector hasAccess={convexUser?.isPro || false} />
+        <div className="hidden sm:block">
+          <ThemeSelector />
+        </div>
+        <div className="hidden sm:block">
+          <LanguageSelector hasAccess={convexUser?.isPro || false} />
+        </div>
 
         {/* Pro button */}
         {!convexUser?.isPro && (
-          <Link href={"/pricing"}>
+          <Link href={"/pricing"} className="hidden sm:block">
             <div className="flex gap-1.5 justify-center rounded-full min-w-[40px] items-center px-3 py-1 bg-amber-400 md:rounded-md ring-[1px] ring-amber-300/50 bg-opacity-25">
               <i>
                 <Image
@@ -111,6 +117,9 @@ async function Header() {
         {/* User Profile */}
         <HeaderProfileButton />
       </div>
+
+      {/* Responsive Nav */}
+      <SideBar isPro={convexUser?.isPro || false}/>
     </header>
   );
 }

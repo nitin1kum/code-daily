@@ -13,6 +13,7 @@ export default {
         foreground: "var(--foreground)",
       },
       screens : {
+        sm:"550px",
         md : "850px",
         lg: "1100px"
       }

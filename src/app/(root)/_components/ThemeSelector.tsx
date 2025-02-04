@@ -68,7 +68,7 @@ function ThemeSelector() {
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
 
         <MdOutlinePalette className="size-6 text-gray-400 group-hover:text-gray-300 transition-colors" />
-        <span className="hidden md:block text-sm w-20 overflow-hidden text-ellipsis whitespace-nowrap lg:min-w-[80px] flex-1 text-gray-300 text-left group-hover:text-white transition-colors">
+        <span className="block sm:hidden md:block text-sm w-20 overflow-hidden text-ellipsis whitespace-nowrap lg:min-w-[80px] flex-1 text-gray-300 text-left group-hover:text-white transition-colors">
           {isMounted ? currentTheme?.label : "VS Dark"}
         </span>
 
