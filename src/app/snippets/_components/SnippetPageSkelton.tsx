@@ -1,7 +1,7 @@
 export const CardSkelton = () => {
     return (
         <div className="relative group">
-            <div className="bg-[#1e1e2e]/80 rounded-xl border border-[#313244]/50 overflow-hidden h-[288px]">
+            <div className="bg-[#1e1e2e]/80 rounded-lg sm:rounded-xl border border-[#313244]/50 overflow-hidden h-[288px]">
                 <div className="p-6 space-y-4">
                     {/* header Shimmer */}
                     <div className="flex items-start justify-between">
@@ -35,7 +35,7 @@ export const CardSkelton = () => {
 
 export default function SnippetPageSkelton(){
     return (
-        <div className="min-h-screen bg-[#0a0a0f] relative">
+        <div className="min-h-screen bg-[#0a0a0f] relative p-2">
             {/* Ambient Background with loading pulses */}
 
             <div className="fixed inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
@@ -56,7 +56,7 @@ export default function SnippetPageSkelton(){
             <div className="max-w-5xl mx-auto mb-12 space-y-6">
                 {/* Search bar */}
                 <div className="relative">
-                    <div className="w-full h-14 bg-[#1e1e2e]/80 rounded-xl border border-[#313244] animate-pulse"/>
+                    <div className="w-full h-14 bg-[#1e1e2e]/80 rounded-lg sm:rounded-xl border border-[#313244] animate-pulse"/>
                 </div>
 
                 {/* Language filter */}

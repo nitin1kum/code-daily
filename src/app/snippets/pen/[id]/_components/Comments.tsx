@@ -50,19 +50,19 @@ function Comments({penId} : {penId : Id<"codepens">}) {
     }
      
   return (
-    <div className='bg-[#121218] border border-[#ffffff0a] rounded-2xl overflow-hidden'>
-        <div className="px-6 sm:px-6 py-6 border-b border-[#ffffff0a]">
+    <div className='bg-[#121218] border border-[#ffffff0a] rounded-lg sm:rounded-2xl overflow-hidden'>
+        <div className="px-3 sm:px-6 py-3 sm:py-6 border-b border-[#ffffff0a]">
             <h2 className="text-lg font-semibold text-white flex items-center gap-2">
                 <BiMessage className='size-5'/>
                 Discussion ({comments?.length})
             </h2>
         </div>
 
-        <div className="p-6 sm:p-8">
+        <div className="p-3 sm:p-8">
             {user ? (
                <CommentForm onSubmit={handleSubmit} isSubmiting={isSubmiting}/>
             ):(
-                <div className="bg-[#0a0a0f] rounded-xl p-6 text-center mb-8 border border-[#ffffff0a]">
+                <div className="bg-[#0a0a0f] rounded-lg sm:rounded-xl p-6 text-center mb-8 border border-[#ffffff0a]">
                     <p className="text-[#808086] mb-4">Sign in to join the discussion</p>
                     <SignInButton mode='modal'>
                         <button className='px-6 py-2 bg-[#3b82f6] text-white rounded-lg hover:bg-[#2563eb] transition-colors'>

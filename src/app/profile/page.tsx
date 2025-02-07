@@ -115,7 +115,7 @@ function ProfilePage() {
   return (
     <div className="min-h-screen bg-[#0a0a0f]">
       <NavigationHeader />
-      <div className="max-w-7xl mx-auto px-4 py-12">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 py-8 sm:py-12">
         {/* Profile Header */}
 
         {(user === undefined ||
@@ -130,7 +130,7 @@ function ProfilePage() {
           />
         )}
 
-        <div className="relative bg-gradient-to-br from-[#12121a] to-[#1a1a2e] rounded-3xl shadow-2xl shadow-black/50 border-gray-800/50 backdrop-blur-xl overflow-hidden">
+        <div className="relative bg-gradient-to-br from-[#12121a] to-[#1a1a2e] rounded-lg sm:rounded-3xl shadow-2xl shadow-black/50 border-gray-800/50 backdrop-blur-xl overflow-hidden">
           {/* Tabs */}
           <div className="border-b border-gray-800/50 overflow-x-scroll">
             <div className="flex space-x-1 p-4 w-max flex-nowrap">
@@ -176,11 +176,11 @@ function ProfilePage() {
               animate={{ opacity: 1, y: 1 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
-              className="p-6"
+              className="p-3 sm:p-6"
             >
               {/* Active Tab is Executions: */}
               {activeTab === "executions" && (
-                <div className="space-y-6">
+                <div className="space-y-3 sm:space-y-6">
                   {executions.map((execution) => (
                     <div
                       className="group rounded-xl overflow-hidden transition-all duration-300 hover:border-blue-500/50 hover:shadow-md hover:shadow-blue-500/50"
@@ -219,7 +219,7 @@ function ProfilePage() {
                           </div>
                         </div>
                       </div>
-                      <div className="p-4 bg-black/20 rounded-b-xl border border-t-0 border-gray-800/50">
+                      <div className="p-2 sm:p-4 bg-black/20 rounded-b-xl border border-t-0 border-gray-800/50">
                         <CodeBlock
                           code={execution.code}
                           language={execution.language}
@@ -290,7 +290,7 @@ function ProfilePage() {
                           transition-all duration-300 overflow-hidden h-full group-hover:transform
                         group-hover:scale-[1.02]"
                           >
-                            <div className="p-6">
+                            <div className="p-3 sm:p-6">
                               <div className="flex items-center justify-between mb-4">
                                 <div className="flex items-center gap-3">
                                   <div className="relative">
@@ -336,7 +336,7 @@ function ProfilePage() {
                                 <BiChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                               </div>
                             </div>
-                            <div className="px-6 pb-6">
+                            <div className="px-3 sm:px-6 pb-3 sm:pb-6">
                               <div className="bg-black/30 rounded-lg p-4 overflow-hidden">
                                 <pre className="text-sm text-gray-300 font-mono line-clamp-3">
                                   {snippet.code}
@@ -397,7 +397,7 @@ function ProfilePage() {
                           transition-all duration-300 overflow-hidden h-full group-hover:transform
                         group-hover:scale-[1.02]"
                           >
-                            <div className="p-6">
+                            <div className="p-3 sm:p-6">
                               <div className="flex items-center justify-between mb-4">
                                 <div className="flex items-center gap-3">
                                   <div className="relative">
@@ -443,7 +443,7 @@ function ProfilePage() {
                                 <BiChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                               </div>
                             </div>
-                            <div className="px-6 pb-6">
+                            <div className="px-3 sm:px-6 pb-3 sm:pb-6">
                               <div className="bg-black/30 rounded-lg p-4 overflow-hidden">
                                 <pre className="text-sm text-gray-300 font-mono line-clamp-3">
                                   {pen.html}
@@ -503,7 +503,7 @@ function ProfilePage() {
                           transition-all duration-300 overflow-hidden h-full group-hover:transform
                         group-hover:scale-[1.02]"
                         >
-                          <div className="p-6">
+                          <div className="p-3 sm:p-6">
                             <div className="flex items-center justify-between mb-4">
                               <div className="flex items-center gap-3">
                                 <div className="relative">
@@ -542,7 +542,7 @@ function ProfilePage() {
                               <BiChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                             </div>
                           </div>
-                          <div className="px-6 pb-6">
+                          <div className="px-3 sm:px-6 pb-3 sm:pb-6">
                             <div className="bg-black/30 rounded-lg p-4 overflow-hidden">
                               <pre className="text-sm text-gray-300 font-mono line-clamp-3">
                                 {snippet.code}
@@ -618,7 +618,7 @@ function ProfilePage() {
                               <BiChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                             </div>
                           </div>
-                          <div className="px-6 pb-6">
+                          <div className="px-3 sm:px-6 pb-3 sm:pb-6">
                             <div className="bg-black/30 rounded-lg p-4 overflow-hidden">
                               <pre className="text-sm text-gray-300 font-mono line-clamp-3">
                                 {pen.html}

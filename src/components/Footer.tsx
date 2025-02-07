@@ -12,9 +12,9 @@ const Footer = () => {
         By developer, for developer
       </div>
       <div className='flex gap-4 text-gray-400'>
-        <Link href='/support' className='hover:text-gray-300'>Support</Link>
-        <Link href='/privacy' className='hover:text-gray-300'>Privacy</Link>
-        <Link href='/terms' className='hover:text-gray-300'>Terms</Link>
+        <Link href='/support' className='text-sm font-medium sm:text-base hover:text-gray-300'>Support</Link>
+        <Link href='/privacy' className='text-sm font-medium sm:text-base hover:text-gray-300'>Privacy</Link>
+        <Link href='/terms'   className='text-sm font-medium sm:text-base hover:text-gray-300'>Terms</Link>
       </div>
       </div>
     </footer>

@@ -27,14 +27,14 @@ const page = () => {
     <div className="min-h-screen bg-[#0a0a0f]">
       <NavigationHeader />
 
-      <main className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 p-6 sm:py-8 lg:py-12">
+      <main className="max-w-[90rem] mx-auto px-2 sm:px-6 lg:px-8 p-6 sm:py-8 lg:py-12">
         {/* header */}
 
         <div className=" max-w-[90rem] mx-auto">
-          <div className="bg-[#121218] border border-[#ffffff0a] rounded-2xl p-6 sm:p-8 mb-6 backdrop:blur-xl">
+          <div className="bg-[#121218] border border-[#ffffff0a] rounded-lg sm:rounded-2xl p-3 sm:p-6 md:p-8 mb-6 backdrop:blur-xl">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
               <div className="flex items-center  gap-4">
-                <div className="flex items-center justify-center size-12 rounded-xl bg-[#ffffff0a] p-2.5">
+                <div className="flex items-center justify-center size-12 rounded-lg sm:rounded-xl bg-[#ffffff0a] p-2.5">
                   <Image
                     src={`/${snippet.language}.png`}
                     alt={`${snippet.language} logo`}
@@ -44,23 +44,23 @@ const page = () => {
                   />
                 </div>
                 <div>
-                  <h1 className="text-xl sm:text-2xl font-semibold text-white mb-2">
+                  <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-white mb-2">
                     {snippet.title}
                   </h1>
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                  <div className="flex flex-wrap items-center gap-x-2 sm:gap-x-4 gap-y-2">
                     <div className="flex items-center gap-2 text-[#8b8b8d]">
-                      <BiUser className="size-4" />
-                      <span>{snippet.userName}</span>
+                      <BiUser className="size-3 sm:size-4" />
+                      <span className="text-sm sm:text-base">{snippet.userName}</span>
                     </div>
                     <div className="flex items-center gap-2 text-[#8b8b8d]">
-                      <CiClock1 className="size-4" />
-                      <span>
+                      <CiClock1 className="size-3 sm:size-4" />
+                      <span className="text-sm sm:text-base">
                         {new Date(snippet._creationTime).toLocaleDateString()}
                       </span>
                     </div>
                     <div className="flex items-center gap-2 text-[#8b8b8d]">
-                      <BiMessage className="size-4" />
-                      <span>{comments?.length} comments</span>
+                      <BiMessage className="size-3 sm:size-4" />
+                      <span className="text-sm sm:text-base">{comments?.length} comments</span>
                     </div>
                   </div>
                 </div>
@@ -72,7 +72,7 @@ const page = () => {
           </div>
 
           {/* Code Editor */}
-          <div className="mb-8 rounded-2xl overflow-hidden border border-[#ffffff0a] bg-[#121218]">
+          <div className="mb-8 rounded-lg sm:rounded-2xl overflow-hidden border border-[#ffffff0a] bg-[#121218]">
             <CodeBlock language={snippet.language} code={snippet.code} />
           </div>
           <Comments snippetId={snippet._id} />

@@ -10,8 +10,8 @@ function DeleteAlert({
   onClose: () => void;
 }) {
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div className="bg-[#1e1e2e] rounded-lg p-6 w-full max-w-md">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-2">
+      <div className="bg-[#1e1e2e] rounded-lg p-3 sm:p-6 w-full max-w-md">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
             <FiAlertTriangle className="size-6 text-red-400"/>

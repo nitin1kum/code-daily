@@ -31,14 +31,14 @@ async function PricingPage() {
             <div className="relative inline-block">
               <div className="absolute -inset-px bg-gradient-to-r from-blue-500 to-purple-500 blur-xl opacity-10" />
               <h1
-                className="relative text-5xl md:text-6xl lg:text-7xl font-semibold bg-gradient-to-r
+                className="relative text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold bg-gradient-to-r
                from-gray-100 to-gray-300 text-transparent bg-clip-text mb-8"
               >
                 Elevate Your <br />
                 Development Experience
               </h1>
             </div>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto">
               Join the next generation of developers with our professional suite
               of tools
             </p>
@@ -49,11 +49,11 @@ async function PricingPage() {
             {ENTERPRISE_FEATURES.map((feature) => (
               <div
                 key={feature.label}
-                className="group relative bg-gradient-to-b from-[#12121a] to-[#0a0a0f] rounded-2xl p-6 hover:transform hover:scale-[1.02] transition-all duration-300"
+                className="group relative bg-gradient-to-b from-[#12121a] to-[#0a0a0f] rounded-2xl p-3 sm:p-6 hover:transform hover:scale-[1.02] transition-all duration-300"
               >
                 <div className="relative">
                   <div
-                    className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 
+                    className="sm:w-12 w-8 h-8 sm:h-12 rounded-xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 
                   flex items-center justify-center mb-4 ring-1 ring-gray-800/60 group-hover:ring-blue-500/20"
                   >
                     <feature.icon className="w-6 h-6 text-blue-400" />
@@ -82,7 +82,7 @@ async function PricingPage() {
               />
               <div className="absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent" />
 
-              <div className="relative p-8 md:p-12">
+              <div className="relative p-4 sm:p-8 md:p-12">
                 {/* header */}
                 <div className="text-center mb-12">
                   <div className="inline-flex p-3 rounded-xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 ring-1 ring-gray-800/60 mb-6">

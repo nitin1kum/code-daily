@@ -34,7 +34,7 @@ function CommentForm({ onSubmit, isSubmiting }: CommentFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="mb-8">
-      <div className="bg-[#0a0a0f] rounded-xl border border-[#ffffff0a] overflow-hidden">
+      <div className="bg-[#0a0a0f] rounded-lg sm:rounded-xl border border-[#ffffff0a] overflow-hidden">
         {/* Comment form header */}
         <div className="flex justify-end items-center px-4 pt-2">
             <button
@@ -63,7 +63,7 @@ function CommentForm({ onSubmit, isSubmiting }: CommentFormProps) {
 
         {/* Footer */}
         <div
-          className="flex items-center justify-between gap-4 px-4 py-3 bg-[#080809] border-t border-[#ffffff0a]"
+          className="flex items-center justify-between gap-4 px-2 sm:px-4 py-3 bg-[#080809] border-t border-[#ffffff0a]"
         >
           <div>
             <div className="hidden sm:block  text-xs text-[#808086] space-y-1">

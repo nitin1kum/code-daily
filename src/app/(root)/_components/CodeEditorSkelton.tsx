@@ -6,7 +6,7 @@ export function CodePanelSkelton() {
   ];
   return (
     <div className="relative w-full lg:w-1/2">
-      <div className="relative bg-[#12121a]/90 backdrop-blur rounded-xl border border-white/[0.05] p-6">
+      <div className="relative bg-[#12121a]/90 backdrop-blur rounded-xl border border-white/[0.05] p-3 sm:p-6">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-6">
@@ -34,7 +34,7 @@ export function CodePanelSkelton() {
         <div className="relative bg-[#12121a]/90 backdrop-blur rounded-xl border border-white/[0.05] h-[400px] md:h-[600px]">
           <div className="h-full relative rounded-xl overflow-hidden ring-1 ring-white/[0.05]">
             <div className="absolue inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5" />
-            <div className="h-full bg-[#1e1e2e]/50 backdrop-blur-sm p-4">
+            <div className="h-full bg-[#1e1e2e]/50 backdrop-blur-sm p-2 sm:p-4">
               {/* Code line Skelton */}
               {size.map((_, i) => (
                 <div key={i} className="flex items-center gap-4 mb-3">

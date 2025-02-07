@@ -5,11 +5,11 @@ import NavigationHeader from "@/components/NavigationHeader";
 function PenLoadingSkelton() {
   const lineWidth = [26, 25, 85, 60, 68, 52, 32, 35, 47, 48, 59];
   return (
-    <div className="relative min-h-screen bg-[#0a0a0f]">
+    <div className="relative min-h-screen bg-[#0a0a0f] p-6">
       <NavigationHeader />
       <div className="relative py-6 sm:py-8 lg:py-12 ">
         {/* header */}
-        <div className="relative group bg-gray-800 py-6 px-4 mb-8 max-w-7xl mx-auto rounded-xl ">
+        <div className="relative group bg-gray-800 py-6 px-4 mb-8 max-w-7xl mx-auto rounded-lg sm:rounded-xl ">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="relative">
@@ -30,7 +30,7 @@ function PenLoadingSkelton() {
 
         {/* Code Panel */}
 
-        <div className="relative bg-gray-800 max-w-7xl mx-auto rounded-xl p-6">
+        <div className="relative bg-gray-800 max-w-7xl mx-auto rounded-lg sm:rounded-xl p-6">
           <div className="flex flex-col gap-3">
             {/* header */}
             <div className="flex justify-between items-center gap-2">
@@ -39,7 +39,7 @@ function PenLoadingSkelton() {
             </div>
 
             {/* Code */}
-            <div className="h-full w-full min-h-[600px] bg-gray-900/80 p-4 rounded-xl realtive">
+            <div className="h-full w-full min-h-[600px] bg-gray-900/80 p-4 rounded-lg sm:rounded-xl realtive">
               <div className="absolue inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5" />
               {lineWidth.map((_, i) => (
                 <div className="flex items-center gap-3 py-1.5" key={i}>

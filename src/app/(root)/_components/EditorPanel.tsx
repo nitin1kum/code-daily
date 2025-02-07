@@ -66,11 +66,11 @@ function EditorPanel({width} : {width : number}) {
 
   return (
     <div style={{width : width + "%"}} className={`relative flex-grow w-full`}>
-      <div className="relative bg-[#12121a]/90 backdrop-blur rounded-xl border border-white/[0.05] p-6">
+      <div className="relative bg-[#12121a]/90 backdrop-blur rounded-xl border border-white/[0.05] p-3 sm:p-6">
         {/* Header */}
 
         <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3 sm:gap-6">
             <div className="flex items-center justify-center h-8 w-8 overflow-hidden rounded-lg bg-[#1e1e2e] ring-1">
               <Image
                 src={"/" + language + ".png"}

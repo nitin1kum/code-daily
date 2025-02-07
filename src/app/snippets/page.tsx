@@ -112,7 +112,7 @@ const SnippetsPage = () => {
         <div className="relative max-w-5xl mx-auto mb-12 space-y-6">
           {/* Search */}
           <div className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg sm:rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500" />
             <div className="relative flex items-center">
               <BiSearch className="absolute left-4 size-4 text-gray-400" />
               <input
@@ -120,7 +120,7 @@ const SnippetsPage = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search snippets/pens by title, language, or author..."
-                className="w-full pl-12 pr-4 py-4 bg-[#1e1e2e]/80 hover:bg-[#1e1e2e] text-white rounded-xl border border-[#313244] hover:border-[#414155] transition-all duration-200 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                className="w-full pl-12 pr-4 py-4 bg-[#1e1e2e]/80 hover:bg-[#1e1e2e] text-white rounded-lg sm:rounded-xl border border-[#313244] hover:border-[#414155] transition-all duration-200 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
               />
             </div>
           </div>
@@ -185,7 +185,7 @@ const SnippetsPage = () => {
           </div>
         </div>
 
-        <div className="relative bg-gradient-to-br from-[#12121a] to-[#1a1a2e] rounded-3xl shadow-2xl shadow-black/50 border-gray-800/50 backdrop-blur-xl overflow-hidden">
+        <div className="relative bg-gradient-to-br from-[#12121a] to-[#1a1a2e] rounded-lg sm:rounded-3xl shadow-2xl shadow-black/50 border-gray-800/50 backdrop-blur-xl overflow-hidden">
           {/* Tabs */}
           <div className="border-b border-gray-800/50">
             <div className="flex space-x-1 p-4">
@@ -224,7 +224,7 @@ const SnippetsPage = () => {
               animate={{ opacity: 1, y: 1 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
-              className="p-6"
+              className="p-3 sm:p-6"
             >
               {/* Active Tab is Snippet: */}
 
@@ -242,7 +242,7 @@ const SnippetsPage = () => {
                       </AnimatePresence>
                     </motion.div>
                   ) : (
-                    <div className="w-full min-h-[300px] flex bg-[#1e1e2e]/80 items-center justify-center ring-1 rounded-xl">
+                    <div className="w-full min-h-[300px] flex bg-[#1e1e2e]/80 items-center justify-center ring-1 rounded-lg sm:rounded-xl">
                       <span className="font-blod text-3xl">
                         No snippet found
                       </span>
@@ -266,7 +266,7 @@ const SnippetsPage = () => {
                     </AnimatePresence>
                   </motion.div>
                 ) : (
-                  <div className="w-full min-h-[300px] flex bg-[#1e1e2e]/80 items-center justify-center ring-1 rounded-xl">
+                  <div className="w-full min-h-[300px] flex bg-[#1e1e2e]/80 items-center justify-center ring-1 rounded-lg sm:rounded-xl">
                     <span className="font-blod text-3xl">
                       No Pen Found
                     </span>

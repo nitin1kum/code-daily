@@ -50,8 +50,8 @@ function SideBar({ isPro }: { isPro: boolean }) {
       <LanguageSelector hasAccess={isPro || false} />
       {/* Pro button */}
       {!isPro && (
-        <Link href={"/pricing"}>
-          <div className="flex gap-1.5 justify-center rounded-full min-w-[40px] items-center px-3 py-1 bg-amber-400 md:rounded-md ring-[1px] ring-amber-300/50 bg-opacity-25">
+        <Link href={"/pricing"} className="w-full">
+          <div className="flex w-full gap-1.5 justify-center rounded-full min-w-[40px] items-center px-3 py-1 bg-amber-400 md:rounded-md ring-[1px] ring-amber-300/50 bg-opacity-25">
             <i>
               <Image
                 src={"/sparkel.svg"}
@@ -60,7 +60,7 @@ function SideBar({ isPro }: { isPro: boolean }) {
                 height={15}
               />
             </i>
-            <span className="hidden md:block text-[13px] text-amber-400 tracking-wide ">
+            <span className=" text-[13px] text-amber-400 tracking-wide ">
               Pro
             </span>
           </div>

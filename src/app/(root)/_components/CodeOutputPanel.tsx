@@ -54,7 +54,7 @@ function CodeOutputPanel() {
       {/* CodeOutputPanel */}
 
       <div className="relative">
-        <div className="relative bg-[#1e1e2e]/50 backdrop-blur-sm border border-[#313244] rounded-xl p-4 h-[400px] md:h-[600px] overflow-auto font-mono text-sm">
+        <div className="relative bg-[#1e1e2e]/50 backdrop-blur-sm border border-[#313244] rounded-xl p-3 sm:p-4 h-[400px] md:h-[600px] overflow-auto font-mono text-sm">
         <textarea
                 onChange={(e) => {setInput(e.target.value)}}
                 name="input"

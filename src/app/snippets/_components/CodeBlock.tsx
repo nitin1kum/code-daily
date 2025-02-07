@@ -17,7 +17,7 @@ function CodeBlock({ language, code }: { language: string; code: string }) {
   return (
     <div className="mt-4 bg-[#0a0a0f] rounded-lg overflow-hidden border border-[#ffffff0a]">
       {/* header bar showing language and copy button */}
-      <div className="flex items-center justify-between px-4 py-2 bg-[#ffffff08]">
+      <div className="flex items-center justify-between px-2 sm:px-4 py-2 bg-[#ffffff08]">
         {/* language indicator with icon */}
         <div className="flex items-center gap-2">
           <span className="text-sm text-gray-400">

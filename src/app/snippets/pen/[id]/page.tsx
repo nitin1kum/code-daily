@@ -37,10 +37,10 @@ const page = () => {
 
         <div className=" max-w-[90rem] mx-auto">
 
-        <div className="bg-[#121218] border border-[#ffffff0a] rounded-2xl p-6 sm:p-8 mb-6 backdrop:blur-xl">
+        <div className="bg-[#121218] border border-[#ffffff0a] rounded-lg sm:rounded-2xl p-6 sm:p-8 mb-6 backdrop:blur-xl">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
             <div className="flex items-center  gap-4">
-              <div className="flex items-center justify-center size-12 rounded-xl bg-[#ffffff0a] p-2.5">
+              <div className="flex items-center justify-center size-12 rounded-lg sm:rounded-xl bg-[#ffffff0a] p-2.5">
                 <Image
                   src={`/html.png`}
                   alt={`html logo`}
@@ -78,7 +78,7 @@ const page = () => {
         </div>
 
         {/* HTML Editor */}
-        <div className="mb-8 rounded-2xl overflow-hidden border border-[#ffffff0a] bg-[#121218]">
+        <div className="mb-8 rounded-lg sm:rounded-2xl overflow-hidden border border-[#ffffff0a] bg-[#121218]">
           <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-[#ffffff0a]">
             <div className="flex items-center gap-2 text-[#808086]">
               <BiCode className="size-4" />
@@ -90,7 +90,7 @@ const page = () => {
         </div>
 
         {/* CSS Editor */}
-        <div className="mb-8 rounded-2xl overflow-hidden border border-[#ffffff0a] bg-[#121218]">
+        <div className="mb-8 rounded-lg sm:rounded-2xl overflow-hidden border border-[#ffffff0a] bg-[#121218]">
           <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-[#ffffff0a]">
             <div className="flex items-center gap-2 text-[#808086]">
               <BiCode className="size-4" />
@@ -102,7 +102,7 @@ const page = () => {
         </div>
 
         {/* Script Editor */}
-        <div className="mb-8 rounded-2xl overflow-hidden border border-[#ffffff0a] bg-[#121218]">
+        <div className="mb-8 rounded-lg sm:rounded-2xl overflow-hidden border border-[#ffffff0a] bg-[#121218]">
           <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-[#ffffff0a]">
             <div className="flex items-center gap-2 text-[#808086]">
               <BiCode className="size-4" />

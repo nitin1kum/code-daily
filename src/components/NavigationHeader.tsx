@@ -84,7 +84,7 @@ export function NavigationHeader() {
         <div className="flex items-center gap-2">
           {/* Sign in */}
           <SignedOut>
-            <Link href={"/pro"}>
+            <Link href={"/pricing"}>
               <div className="flex gap-1.5 justify-center items-center px-3 py-1 bg-gradient-to-r from-amber-500/20 to-orange-500/20 hover:from-amber-500/30 hover:to-orange-500/30 rounded-md ring-[1px] ring-amber-300/50">
                 <i>
                   <Image

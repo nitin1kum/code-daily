@@ -44,7 +44,7 @@ function PenCard({ pen }: { pen: Pen }) {
       transition={{ duration: 0.2 }}
     >
       <Link href={`/snippets/pen/${pen._id}`} className="h-full block">
-        <div className="relative h-full bg-[#1e1e2e]/80 backdrop-blur-sm rounded-xl border border-[#313244] hover:border-[#313244] transition-all duration-300 overflow-hidden">
+        <div className="relative h-full bg-[#1e1e2e]/80 backdrop-blur-sm rounded-lg sm:rounded-xl border border-[#313244] hover:border-[#313244] transition-all duration-300 overflow-hidden">
           <div className="p-3 md:p-6">
             {/* Header */}
             <div className="flex items-start justify-between mb-4">
