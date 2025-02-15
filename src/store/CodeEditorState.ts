@@ -1,9 +1,7 @@
 import { LANGUAGE_CONFIG } from "@/app/(root)/_constants";
-import { Monaco } from "@monaco-editor/react";
 import { CodeEditorState } from "@/types";
 import { create } from "zustand";
 import toast from "react-hot-toast";
-import { input } from "framer-motion/client";
 
 const getInitialState = () => {
   if (typeof window === "undefined") {
@@ -11,6 +9,7 @@ const getInitialState = () => {
       language: "javascript",
       fontSize: 16,
       theme: "vs-dark",
+      code: LANGUAGE_CONFIG["javascript"].defaultCode,
     };
   }
 
@@ -20,11 +19,14 @@ const getInitialState = () => {
     10
   );
   const theme = localStorage.getItem("editor-theme") || "vs-dark";
-
+  const code =
+    localStorage.getItem(`code-editor-${language}`) ||
+    LANGUAGE_CONFIG[language].defaultCode;
   return {
     language,
     fontSize,
     theme,
+    code
   };
 };
 
@@ -36,30 +38,20 @@ export const useCodeEditorState = create<CodeEditorState>((set, get) => {
     output: "",
     isRunning: false,
     error: null,
-    error_name : null,
-    editor: null,
-    input : "",
+    error_name: null,
+    code: "",
+    input: "",
     executionResult: null,
 
-    getCode: (): string => get().editor?.getValue() || "",
-
-    setEditor: (editor: Monaco) => {
-      const savedCode = localStorage.getItem(`code-editor-${get().language}`);
-      if (savedCode && editor) {
-        editor.setValue(savedCode); // Set the saved code in the editor
-      }
-      set({ editor });
+    setCode: (value: string) => {
+      set({ code: value });
     },
 
-    setInput : (input : string) => {
-      set({input : input})
+    setInput: (input: string) => {
+      set({ input: input });
     },
 
     setLanguage: (language: string) => {
-      const currentCode = get().editor?.getValue();
-      if (currentCode)
-        localStorage.setItem(`code-editor-${get().language}`, currentCode);
-
       localStorage.setItem("editor-language", language);
       set({
         language,
@@ -78,15 +70,13 @@ export const useCodeEditorState = create<CodeEditorState>((set, get) => {
     },
 
     runCode: async () => {
-      const { language, getCode } = get();
-      const code = getCode();
+      const { language, code } = get();
 
       if (!code) set({ error: "Please enter some code" });
 
       set({ isRunning: true });
 
       try {
-        console.log(input)
         const runtime = LANGUAGE_CONFIG[language].pistonRuntime;
         const response = await fetch("https://emkc.org/api/v2/piston/execute", {
           method: "POST",
@@ -102,16 +92,16 @@ export const useCodeEditorState = create<CodeEditorState>((set, get) => {
           }),
         });
 
-        if(!response.ok){
-          console.log("Error while compiling code - ",response);
+        if (!response.ok) {
+          console.log("Error while compiling code - ", response);
           toast.error("Some error occurred");
           set({
-            error : "Some Unknown Error Occurred. Please try again later.",
-            error_name : "Network Error",
+            error: "Some Unknown Error Occurred. Please try again later.",
+            error_name: "Network Error",
             executionResult: {
               code,
               output: "",
-              error : "Some Unknown Error Occurred. Please try again later.",
+              error: "Some Unknown Error Occurred. Please try again later.",
             },
           });
           return;
@@ -124,7 +114,7 @@ export const useCodeEditorState = create<CodeEditorState>((set, get) => {
         if (data.message) {
           set({
             error: data.message,
-            error_name : "Network Error",
+            error_name: "Network Error",
             executionResult: { code, output: "", error: data.message },
           });
           return;
@@ -136,7 +126,7 @@ export const useCodeEditorState = create<CodeEditorState>((set, get) => {
 
           set({
             error,
-            error_name : "Compilation error",
+            error_name: "Compilation error",
             executionResult: {
               code,
               output: "",
@@ -153,7 +143,7 @@ export const useCodeEditorState = create<CodeEditorState>((set, get) => {
 
           set({
             error,
-            error_name : "Run time error",
+            error_name: "Run time error",
             executionResult: {
               code,
               output: "",
@@ -175,7 +165,7 @@ export const useCodeEditorState = create<CodeEditorState>((set, get) => {
             output: output.trim(),
           },
         });
-      } catch (error : any) {
+      } catch (error: any) {
         console.log("Error while running code: ", error);
         set({
           error: error,

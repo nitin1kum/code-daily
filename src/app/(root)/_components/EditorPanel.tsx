@@ -16,15 +16,14 @@ import { useModeSlector } from "@/store/ModeSelector";
 import CodePanel from "./CodePanel";
 import DevelopmentPanel from "./DevelopmentPanel";
 
-function EditorPanel({width} : {width : number}) {
+function EditorPanel({ width }: { width: number }) {
   const [isShareDialogOpen, setIsShareDialogOpen] = useState<boolean>(false);
   const [isMounted, setIsMounted] = useState(false);
-  const {mode} = useModeSlector();
+  const { mode } = useModeSlector();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { loaded } = useClerk();
   const menuBar = useRef<HTMLDivElement>(null);
-  const { language, fontSize, editor, setFontSize } =
-    useCodeEditorState();
+  const { language, fontSize, code,setCode, setFontSize } = useCodeEditorState();
 
   useEffect(() => {
     setIsMounted(true);
@@ -40,7 +39,7 @@ function EditorPanel({width} : {width : number}) {
 
   const handleRefresh = () => {
     const defaultCode = LANGUAGE_CONFIG[language].defaultCode;
-    if (editor) editor.setValue(defaultCode);
+    setCode(defaultCode);
     localStorage.removeItem(`code-editor-${language}`);
   };
 
@@ -50,22 +49,21 @@ function EditorPanel({width} : {width : number}) {
   };
 
   useEffect(() => {
-    function handleClick(e : MouseEvent){
-      if(menuBar.current && !menuBar.current.contains(e.target as Node)){
+    function handleClick(e: MouseEvent) {
+      if (menuBar.current && !menuBar.current.contains(e.target as Node)) {
         setIsMenuOpen(false);
       }
     }
-    window.addEventListener("click",handleClick);
+    window.addEventListener("click", handleClick);
     return () => {
-      window.removeEventListener("click",handleClick);
-    }
-  }, [])
-  
+      window.removeEventListener("click", handleClick);
+    };
+  }, []);
 
   if (!loaded || !isMounted) return <CodePanelSkelton />;
 
   return (
-    <div style={{width : width + "%"}} className={`relative flex-grow w-full`}>
+    <div style={{ width: width + "%" }} className={`relative flex-grow w-full`}>
       <div className="relative bg-[#12121a]/90 backdrop-blur rounded-xl border border-white/[0.05] p-3 sm:p-6">
         {/* Header */}
 
@@ -89,13 +87,13 @@ function EditorPanel({width} : {width : number}) {
 
           <div className="flex items-center gap-3">
             {/* Developmet and code selector */}
-            <DevelopmentSelector/>
+            <DevelopmentSelector />
             {/* Refresh button */}
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               onClick={handleRefresh}
-              disabled = {mode === "development"}
+              disabled={mode === "development"}
               className={`p-2 bg-[#1e1e2e] hover:bg-[#2a2a3a] rounded-lg ring-1 ring-white/5 transition-colors ${mode === "Development" && "cursor-not-allowed"}`}
             >
               <FiRotateCcw className="size-4 text-gray-400" />
@@ -164,7 +162,7 @@ function EditorPanel({width} : {width : number}) {
         </div>
 
         {/* Editor */}
-        {mode === "Code" ? (<CodePanel/>) : (<DevelopmentPanel/>)}
+        {mode === "Code" ? <CodePanel /> : <DevelopmentPanel />}
       </div>
       {isShareDialogOpen && (
         <ShareSnippetDialog onClose={() => setIsShareDialogOpen(false)} />

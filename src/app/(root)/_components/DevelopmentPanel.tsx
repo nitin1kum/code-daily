@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { defineMonacoThemes, DEVELOPMENT_CONFIG, THEMES } from "../_constants";
-import { Editor } from "@monaco-editor/react";
+import { Editor, Monaco } from "@monaco-editor/react";
 import { useCodeEditorState } from "@/store/CodeEditorState";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -29,19 +29,13 @@ const TABS = [
 
 function DevelopmentPanel() {
   const { theme, fontSize } = useCodeEditorState();
-  const {
-    language,
-    setEditor,
-    updateHTML,
-    updateCSS,
-    updateJS,
-    setLanguage,
-    editor,
-  } = useDevelopmentState();
+  const { language, updateHTML, updateCSS, updateJS, setLanguage } =
+    useDevelopmentState();
   const currentTheme = THEMES.find((q) => q.id === theme);
   const [activeTab, setActiveTab] = useState<"html" | "css" | "javascript">(
     "html"
   );
+  const [editorValue, setEditorValue] = useState("");
 
   const handleEditorChange = (value: string | undefined) => {
     if (activeTab === "html") {
@@ -56,21 +50,23 @@ function DevelopmentPanel() {
   useEffect(() => {
     const savedCode = localStorage.getItem(`development-editor-${activeTab}`);
     const newCode = savedCode || DEVELOPMENT_CONFIG[activeTab];
-    if (editor) editor.setValue(newCode);
-  }, [language, editor]);
+    setEditorValue(newCode);
+  }, [language]);
 
   const handleRefresh = () => {
     const defaultCode = DEVELOPMENT_CONFIG[activeTab];
-    if (editor) editor.setValue(defaultCode);
+    setEditorValue(defaultCode);
     localStorage.removeItem(`development-editor-${activeTab}`);
+  };
+
+  const handleEditorMount = (editor: Monaco) => {
+    editor.focus();
   };
 
   return (
     <div className="relative group overflow-hidden min-h-[400px] md:min-h-[600px]">
       {/* Develoment Panel Header */}
-      <div
-        className="border-b border-gray-800/50 flex items-center justify-between rounded-t-xl"
-      >
+      <div className="border-b border-gray-800/50 flex items-center justify-between rounded-t-xl">
         <div className="flex gap-1">
           {TABS.map((tab) => (
             <button
@@ -118,37 +114,107 @@ function DevelopmentPanel() {
 
       {/* Development Editor */}
       <div className="relative group rounded-b-xl overflow-hidden ring-1 ring-white/[0.05] min-h-[400px] md:min-h-[574px]">
-        <Editor
-          className="h-[400px] md:h-[574px]"
-          language={language}
-          onChange={handleEditorChange}
-          theme={theme}
-          beforeMount={defineMonacoThemes}
-          onMount={(editor) => {
-            setEditor(editor);
-          }}
-          options={{
-            minimap: { enabled: false },
-            fontSize,
-            automaticLayout: true,
-            scrollBeyondLastLine: false,
-            padding: { top: 16, bottom: 16 },
-            renderWhiteSpace: "selection",
-            fontFamily: '"Fira Code","Cascadia Code",Consolas,monospace',
-            fontLigature: true,
-            cursorBlinking: "smooth",
-            smoothScrolling: true,
-            contextmenu: true,
-            renderLineHighlight: "all",
-            lineHeight: 1.6,
-            letterSpacing: 0.5,
-            roundedSelection: true,
-            scrollbar: {
-              verticalScrollbarSize: 8,
-              horizontalScrollbarSize: 8,
-            },
-          }}
-        />
+        {/* active tab is html */}
+        {activeTab === "html" && (
+          <Editor
+            className="h-[400px] md:h-[574px]"
+            language= "html"
+            onChange={handleEditorChange}
+            theme={theme}
+            value={editorValue}
+            beforeMount={defineMonacoThemes}
+            onMount={handleEditorMount}
+            options={{
+              minimap: { enabled: false },
+              fontSize,
+              automaticLayout: true,
+              scrollBeyondLastLine: false,
+              padding: { top: 16, bottom: 16 },
+              renderWhiteSpace: "selection",
+              fontFamily: '"Fira Code","Cascadia Code",Consolas,monospace',
+              fontLigature: true,
+              cursorBlinking: "smooth",
+              smoothScrolling: true,
+              contextmenu: true,
+              renderLineHighlight: "all",
+              lineHeight: 1.6,
+              letterSpacing: 0.5,
+              roundedSelection: true,
+              scrollbar: {
+                verticalScrollbarSize: 8,
+                horizontalScrollbarSize: 8,
+              },
+            }}
+          />
+        )}
+
+        {/* active tab is css */}
+        {activeTab === "css" && (
+          <Editor
+            className="h-[400px] md:h-[574px]"
+            language="css"
+            onChange={handleEditorChange}
+            theme={theme}
+            value={editorValue}
+            beforeMount={defineMonacoThemes}
+            onMount={handleEditorMount}
+            options={{
+              minimap: { enabled: false },
+              fontSize,
+              automaticLayout: true,
+              scrollBeyondLastLine: false,
+              padding: { top: 16, bottom: 16 },
+              renderWhiteSpace: "selection",
+              fontFamily: '"Fira Code","Cascadia Code",Consolas,monospace',
+              fontLigature: true,
+              cursorBlinking: "smooth",
+              smoothScrolling: true,
+              contextmenu: true,
+              renderLineHighlight: "all",
+              lineHeight: 1.6,
+              letterSpacing: 0.5,
+              roundedSelection: true,
+              scrollbar: {
+                verticalScrollbarSize: 8,
+                horizontalScrollbarSize: 8,
+              },
+            }}
+          />
+        )}
+
+        {/* active tab is javascript */}
+        {activeTab === "javascript" && (
+          <Editor
+            className="h-[400px] md:h-[574px]"
+            language="javascript"
+            onChange={handleEditorChange}
+            theme={theme}
+            value={editorValue}
+            beforeMount={defineMonacoThemes}
+            onMount={handleEditorMount}
+            options={{
+              minimap: { enabled: false },
+              fontSize,
+              automaticLayout: true,
+              scrollBeyondLastLine: false,
+              padding: { top: 16, bottom: 16 },
+              renderWhiteSpace: "selection",
+              fontFamily: '"Fira Code","Cascadia Code",Consolas,monospace',
+              fontLigature: true,
+              cursorBlinking: "smooth",
+              smoothScrolling: true,
+              contextmenu: true,
+              renderLineHighlight: "all",
+              lineHeight: 1.6,
+              letterSpacing: 0.5,
+              roundedSelection: true,
+              scrollbar: {
+                verticalScrollbarSize: 8,
+                horizontalScrollbarSize: 8,
+              },
+            }}
+          />
+        )}
       </div>
     </div>
   );

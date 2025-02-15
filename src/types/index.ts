@@ -46,12 +46,11 @@ export interface CodeEditorState {
   error_name : string | null;
   theme: string;
   fontSize: number;
-  editor: Monaco | null;
+  code: string;
   input : string,
   executionResult: ExecutionResult | null;
 
-  setEditor: (editor: Monaco) => void;
-  getCode: () => string;
+  setCode: (value : string) => void;
   setInput : (input : string) => void;
   setLanguage: (language: string) => void;
   setTheme: (theme: string) => void;
@@ -63,15 +62,12 @@ export interface DevelopmentState {
   html : string,
   css : string,
   script : string
-  editor: Monaco | null;
   language : string,
   logs: Array<logs>,
 
   updateHTML : (html : string) => void,
-  getCode: () => string;
   setLogs : (logs : Array<logs>) => void,
   setLanguage: (language: string) => void;
-  setEditor: (editor: Monaco) => void;
   updateCSS : (css : string) => void,
   updateJS : (js : string) => void,
 }

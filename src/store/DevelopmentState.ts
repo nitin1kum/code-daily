@@ -30,20 +30,7 @@ export const useDevelopmentState = create<DevelopmentState>((set, get) => {
   return {
     language: "html",
     ...initialValue,
-    editor: null,
     logs: [],
-
-    getCode: (): string => get().editor?.getValue() || "",
-
-    setEditor: (editor: Monaco) => {
-      const savedCode = localStorage.getItem(
-        `development-editor-${get().language}`
-      );
-      if (savedCode && editor) {
-        editor.setValue(savedCode); // Set the saved code in the editor
-      }
-      set({ editor });
-    },
 
     setLogs: (logs) => {
       set({ logs: logs });
@@ -64,12 +51,6 @@ export const useDevelopmentState = create<DevelopmentState>((set, get) => {
     },
 
     setLanguage: (language: string) => {
-      const currentCode = get().editor?.getValue();
-      if (currentCode)
-        localStorage.setItem(
-          `development-editor-${get().language}`,
-          currentCode
-        );
       set({
         language,
       });
