@@ -25,11 +25,8 @@ function MainBody() {
       const deltaX = moveEvent.clientX - startX;
       const newLeft =
         ((left * containerWidth) / 100 + deltaX) / containerWidth * 100;
-
-      if (newLeft > 25 && newLeft < 75) {
         setLeft(newLeft);
         setRight(100 - newLeft);
-      }
     };
 
     const handleMouseUp = () => {

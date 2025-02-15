@@ -29,13 +29,20 @@ const TABS = [
 
 function DevelopmentPanel() {
   const { theme, fontSize } = useCodeEditorState();
-  const { language, updateHTML, updateCSS, updateJS, setLanguage } =
-    useDevelopmentState();
+  const {
+    html,
+    css,
+    script,
+    language,
+    updateHTML,
+    updateCSS,
+    updateJS,
+    setLanguage,
+  } = useDevelopmentState();
   const currentTheme = THEMES.find((q) => q.id === theme);
   const [activeTab, setActiveTab] = useState<"html" | "css" | "javascript">(
     "html"
   );
-  const [editorValue, setEditorValue] = useState("");
 
   const handleEditorChange = (value: string | undefined) => {
     if (activeTab === "html") {
@@ -50,17 +57,13 @@ function DevelopmentPanel() {
   useEffect(() => {
     const savedCode = localStorage.getItem(`development-editor-${activeTab}`);
     const newCode = savedCode || DEVELOPMENT_CONFIG[activeTab];
-    setEditorValue(newCode);
+    handleEditorChange(newCode);
   }, [language]);
 
   const handleRefresh = () => {
     const defaultCode = DEVELOPMENT_CONFIG[activeTab];
-    setEditorValue(defaultCode);
+    handleEditorChange(defaultCode);
     localStorage.removeItem(`development-editor-${activeTab}`);
-  };
-
-  const handleEditorMount = (editor: Monaco) => {
-    editor.focus();
   };
 
   return (
@@ -115,106 +118,95 @@ function DevelopmentPanel() {
       {/* Development Editor */}
       <div className="relative group rounded-b-xl overflow-hidden ring-1 ring-white/[0.05] min-h-[400px] md:min-h-[574px]">
         {/* active tab is html */}
-        {activeTab === "html" && (
-          <Editor
-            className="h-[400px] md:h-[574px]"
-            language= "html"
-            onChange={handleEditorChange}
-            theme={theme}
-            value={editorValue}
-            beforeMount={defineMonacoThemes}
-            onMount={handleEditorMount}
-            options={{
-              minimap: { enabled: false },
-              fontSize,
-              automaticLayout: true,
-              scrollBeyondLastLine: false,
-              padding: { top: 16, bottom: 16 },
-              renderWhiteSpace: "selection",
-              fontFamily: '"Fira Code","Cascadia Code",Consolas,monospace',
-              fontLigature: true,
-              cursorBlinking: "smooth",
-              smoothScrolling: true,
-              contextmenu: true,
-              renderLineHighlight: "all",
-              lineHeight: 1.6,
-              letterSpacing: 0.5,
-              roundedSelection: true,
-              scrollbar: {
-                verticalScrollbarSize: 8,
-                horizontalScrollbarSize: 8,
-              },
-            }}
-          />
-        )}
+        <Editor
+          className={`h-[400px] md:h-[574px] absolute inset-0" ${activeTab === "html" ? "block" : "hidden"}`}
+          language="html"
+          onChange={handleEditorChange}
+          theme={theme}
+          value={html}
+          beforeMount={defineMonacoThemes}
+          options={{
+            minimap: { enabled: false },
+            fontSize,
+            automaticLayout: true,
+            scrollBeyondLastLine: false,
+            padding: { top: 16, bottom: 16 },
+            renderWhiteSpace: "selection",
+            fontFamily: '"Fira Code","Cascadia Code",Consolas,monospace',
+            fontLigature: true,
+            cursorBlinking: "smooth",
+            smoothScrolling: true,
+            contextmenu: true,
+            renderLineHighlight: "all",
+            lineHeight: 1.6,
+            letterSpacing: 0.5,
+            roundedSelection: true,
+            scrollbar: {
+              verticalScrollbarSize: 8,
+              horizontalScrollbarSize: 8,
+            },
+          }}
+        />
 
-        {/* active tab is css */}
-        {activeTab === "css" && (
-          <Editor
-            className="h-[400px] md:h-[574px]"
-            language="css"
-            onChange={handleEditorChange}
-            theme={theme}
-            value={editorValue}
-            beforeMount={defineMonacoThemes}
-            onMount={handleEditorMount}
-            options={{
-              minimap: { enabled: false },
-              fontSize,
-              automaticLayout: true,
-              scrollBeyondLastLine: false,
-              padding: { top: 16, bottom: 16 },
-              renderWhiteSpace: "selection",
-              fontFamily: '"Fira Code","Cascadia Code",Consolas,monospace',
-              fontLigature: true,
-              cursorBlinking: "smooth",
-              smoothScrolling: true,
-              contextmenu: true,
-              renderLineHighlight: "all",
-              lineHeight: 1.6,
-              letterSpacing: 0.5,
-              roundedSelection: true,
-              scrollbar: {
-                verticalScrollbarSize: 8,
-                horizontalScrollbarSize: 8,
-              },
-            }}
-          />
-        )}
+        <Editor
+          className={`h-[400px] md:h-[574px] absolute inset-0" ${activeTab === "css" ? "block" : "hidden"}`}
+          language="css"
+          onChange={handleEditorChange}
+          theme={theme}
+          value={css}
+          beforeMount={defineMonacoThemes}
+          options={{
+            minimap: { enabled: false },
+            fontSize,
+            automaticLayout: true,
+            scrollBeyondLastLine: false,
+            padding: { top: 16, bottom: 16 },
+            renderWhiteSpace: "selection",
+            fontFamily: '"Fira Code","Cascadia Code",Consolas,monospace',
+            fontLigature: true,
+            cursorBlinking: "smooth",
+            smoothScrolling: true,
+            contextmenu: true,
+            renderLineHighlight: "all",
+            lineHeight: 1.6,
+            letterSpacing: 0.5,
+            roundedSelection: true,
+            scrollbar: {
+              verticalScrollbarSize: 8,
+              horizontalScrollbarSize: 8,
+            },
+          }}
+        />
 
-        {/* active tab is javascript */}
-        {activeTab === "javascript" && (
-          <Editor
-            className="h-[400px] md:h-[574px]"
-            language="javascript"
-            onChange={handleEditorChange}
-            theme={theme}
-            value={editorValue}
-            beforeMount={defineMonacoThemes}
-            onMount={handleEditorMount}
-            options={{
-              minimap: { enabled: false },
-              fontSize,
-              automaticLayout: true,
-              scrollBeyondLastLine: false,
-              padding: { top: 16, bottom: 16 },
-              renderWhiteSpace: "selection",
-              fontFamily: '"Fira Code","Cascadia Code",Consolas,monospace',
-              fontLigature: true,
-              cursorBlinking: "smooth",
-              smoothScrolling: true,
-              contextmenu: true,
-              renderLineHighlight: "all",
-              lineHeight: 1.6,
-              letterSpacing: 0.5,
-              roundedSelection: true,
-              scrollbar: {
-                verticalScrollbarSize: 8,
-                horizontalScrollbarSize: 8,
-              },
-            }}
-          />
-        )}
+        <Editor
+          className={`h-[400px] md:h-[574px] absolute inset-0" ${activeTab === "javascript" ? "block" : "hidden"}`}
+          language="javascript"
+          onChange={handleEditorChange}
+          theme={theme}
+          value={script}
+          beforeMount={defineMonacoThemes}
+          options={{
+            minimap: { enabled: false },
+            fontSize,
+            automaticLayout: true,
+            scrollBeyondLastLine: false,
+            padding: { top: 16, bottom: 16 },
+            renderWhiteSpace: "selection",
+            fontFamily: '"Fira Code","Cascadia Code",Consolas,monospace',
+            fontLigature: true,
+            cursorBlinking: "smooth",
+            smoothScrolling: true,
+            contextmenu: true,
+            renderLineHighlight: "all",
+            lineHeight: 1.6,
+            letterSpacing: 0.5,
+            roundedSelection: true,
+            scrollbar: {
+              verticalScrollbarSize: 8,
+              horizontalScrollbarSize: 8,
+            },
+          }}
+        />
       </div>
     </div>
   );

@@ -61,7 +61,7 @@ function ThemeSelector() {
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.97 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="px-3 group py-1 md:py-2 flex gap-2 items-center md:w-40 lg:w-48 bg-[#1e1e2e]/80 rounded-full md:rounded-md hover:bg-[#262636] transition-all duration-200 border-gray-800/50 border-2 hover:border-gray-700"
+        className="px-3 group py-1 md:py-2 flex gap-2 items-center md:w-40 lg:w-48 bg-[#1e1e2e] rounded-full md:rounded-md hover:bg-[#262636] transition-all duration-200 border-gray-800/50 border-2 hover:border-gray-700"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
 

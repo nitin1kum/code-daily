@@ -9,7 +9,7 @@ function OutputPanel({ width, overlay }: { width: number; overlay: boolean }) {
   return (
     <div
       style={{ width: width + "%" }}
-      className={`relative bg-[#181825] rounded-xl p-3 sm:p-6 ring-1 ring-white/[0.05] flex-grow w-[50%]`}
+      className={`relative bg-[#181825] rounded-xl p-3 sm:p-6 ring-1 ring-white/[0.05] flex-grow w-[50%] w-min-[300px] ${width > 20 ? "sm:block hidden" : "hidden"}`}
     >
       <div
         className={`absolute z-10 inset-0 ${overlay ? "block" : "hidden"}`}

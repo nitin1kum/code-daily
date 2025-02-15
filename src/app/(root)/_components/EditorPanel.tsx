@@ -63,7 +63,7 @@ function EditorPanel({ width }: { width: number }) {
   if (!loaded || !isMounted) return <CodePanelSkelton />;
 
   return (
-    <div style={{ width: width + "%" }} className={`relative flex-grow w-full`}>
+    <div style={{ width: width + "%" }} className={`relative flex-grow w-full min-w-[300px] ${width > 20 ? "sm:block hidden" : "hidden"}`}>
       <div className="relative bg-[#12121a]/90 backdrop-blur rounded-xl border border-white/[0.05] p-3 sm:p-6">
         {/* Header */}
 
