@@ -23,7 +23,7 @@ function EditorPanel({ width }: { width: number }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { loaded } = useClerk();
   const menuBar = useRef<HTMLDivElement>(null);
-  const { language, fontSize, code,setCode, setFontSize } = useCodeEditorState();
+  const { language, fontSize,setCode, setFontSize } = useCodeEditorState();
 
   useEffect(() => {
     setIsMounted(true);

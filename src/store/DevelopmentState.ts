@@ -1,5 +1,4 @@
 "use client";
-import { Monaco } from "@monaco-editor/react";
 import { DevelopmentState } from "@/types";
 import { create } from "zustand";
 import { DEVELOPMENT_CONFIG } from "@/app/(root)/_constants";
@@ -25,7 +24,7 @@ function getInitialValue() {
   return { html, css, script };
 }
 
-export const useDevelopmentState = create<DevelopmentState>((set, get) => {
+export const useDevelopmentState = create<DevelopmentState>((set) => {
   const initialValue = getInitialValue();
   return {
     language: "html",
