@@ -13,7 +13,7 @@ const ShareSnipperDialog = ({ onClose }: { onClose: () => void }) => {
   const {mode} = useModeSlector();
   const {html,css,script} = useDevelopmentState();
   const [isPrivate,setIsPrivate] = useState<boolean>(false);
-  const { language, getCode } = useCodeEditorState();
+  const { language,code } = useCodeEditorState();
   const createSnippet = useMutation(api.snippet.createSnippet);
   const createPen = useMutation(api.codepens.createPen);
 
@@ -22,7 +22,6 @@ const ShareSnipperDialog = ({ onClose }: { onClose: () => void }) => {
     setIsSharing(true);
 
     try {
-      const code = getCode();
       if(mode === "Code"){
         await createSnippet({title,language,code,isPrivate})
       }
