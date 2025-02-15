@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { defineMonacoThemes, DEVELOPMENT_CONFIG, THEMES } from "../_constants";
-import { Editor, Monaco } from "@monaco-editor/react";
+import { Editor } from "@monaco-editor/react";
 import { useCodeEditorState } from "@/store/CodeEditorState";
 import { motion } from "framer-motion";
 import Image from "next/image";
